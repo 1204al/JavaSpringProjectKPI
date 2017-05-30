@@ -66,6 +66,41 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- HSQLDB embedded database. Встроенная база данных-->
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+
+        <!-- Spring JDBC -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Test Artifacts with Spring-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Logging with SLF4J & LogBack -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
     <!--http://startbootstrap.com/template-overviews/modern-business/  this is theme-->
 
@@ -85,6 +120,15 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <!--need to find configs in tests in package web-inf like
+       @ContextConfiguration(locations = {"classpath:/config/application-context.xml"
+       -->
+        <testResources>
+            <testResource>
+                <directory>src/main/webapp/WEB-INF/config</directory>
+            </testResource>
+        </testResources>
     </build>
 
 </project>
