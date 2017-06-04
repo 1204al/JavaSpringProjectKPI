@@ -18,8 +18,8 @@
         <form action="${uploadText}" method="post">
           <table>
             <tr>
-              <td><b>File:</b></td>
-              <td><input type="text" name="text"></td>
+              <td><b>Text:</b></td>
+              <td><textarea rows="4" cols="50" name="text" >Orange orange apple.Juice fruit apple pear apple. Apple.Orange.pear.pear,pear,pear,pear</textarea></td>
               <td><input type="submit" value="send text"></td>
             </tr>
           </table>

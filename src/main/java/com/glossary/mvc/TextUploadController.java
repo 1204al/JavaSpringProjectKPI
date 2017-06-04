@@ -17,11 +17,12 @@ public class TextUploadController {
     @RequestMapping(value = "/uploadText", method = RequestMethod.POST)
     public @ResponseBody
     String handleTextUpload(@RequestParam("text") String text) {
-        String[] parts = (text + " ").split("\\p{P}?[ \\t\\n\\r]+");
+        String[] parts = (text + " ").split("[\\.\\'\\s\\,\\-0-9]");
         List<String> words=Arrays.asList(parts);
-        TreeMap<String, Integer> wordsFrequency = new TreeMap<String, Integer>();  // key:words; value:times the word comes across in the book
+        TreeMap<String, Integer> wordsFrequency = new TreeMap<String, Integer>();  // key:words; value:times the word comes across in the text
         for (int i = 0; i < words.size(); i++) {
             String s=words.get(i).toLowerCase();
+            if(s.length()<3) continue;
             if(wordsFrequency.containsKey(s)){
                 wordsFrequency.put(s,wordsFrequency.get(s)+1);
             }else{
@@ -39,6 +40,14 @@ public class TextUploadController {
             public int compareTo(Object o) {
                 return this.frequency-((WordFrequency) o).frequency;
             }
+
+            @Override
+            public String toString() {
+                return "WordFrequency{" +
+                        "word='" + word + '\'' +
+                        ", frequency=" + frequency +
+                        '}';
+            }
         }
 
         List<WordFrequency> listOfWordFrequencies=new ArrayList<WordFrequency>();
@@ -47,14 +56,17 @@ public class TextUploadController {
             Integer frequency=entry.getValue();
             listOfWordFrequencies.add(new WordFrequency(word,frequency));
         }
+
+        Collections.sort(listOfWordFrequencies);
+
         List<String> listOfWords=new ArrayList<>();
         for (int i = 0; i < listOfWordFrequencies.size(); i++) {
+
             listOfWords.add(listOfWordFrequencies.get(i).word);
         }
+//        Orange orange apple.Juice fruit apple pear apple. Apple.Orange.pear.pear,pear,pear,pear
+        //Сначало самые редкие слова!!
         System.out.println(listOfWords);
-
-
-
 
         return "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc";
 
