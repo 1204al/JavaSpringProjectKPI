@@ -20,7 +20,7 @@
             <tr>
               <td><b>File:</b></td>
               <td><input type="text" name="text"></td>
-              <td><input type="submit" value="load text"></td>
+              <td><input type="submit" value="send text"></td>
             </tr>
           </table>
         </form>
